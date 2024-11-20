@@ -1,7 +1,29 @@
+"use client"
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+
+type Categories = {
+    id: string;
+    name: string;
+    key: string
+}
 
 export default function Header() {
+    const [categories, setCategories] = useState<Categories[] | null>(null);
+
+    useEffect(() => {
+        async function fetchCategories() {
+            const response = await fetch('/api/categories');
+            if (response.ok) {
+                const categories: Categories[] = await response.json();
+                setCategories(categories);
+            }
+        }
+        fetchCategories();
+    }, []);
+
     return (
         <header className="flex bg-escheresque justify-between content-center py-8 px-4 md:px-24 xl:px-56 text-gray-800">
             <Link href="/" className="me-5">
@@ -15,21 +37,13 @@ export default function Header() {
                         Categories
                     </Link>
                     <ul className="absolute left-0 top-2/3 hidden mt-2 space-y-2 text-gray-600 bg-white shadow-lg w-auto group-hover:block font-normal text-sm z-50">
-                        <li>
-                            <Link href="/categories/wordpress" className="block px-4 py-2 hover:bg-neutral-100">
-                                WordPress
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/categories/design" className="block px-4 py-2 hover:bg-neutral-100">
-                                Design
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/categories/photography" className="block px-4 py-2 hover:bg-neutral-100">
-                                Photography
-                            </Link>
-                        </li>
+                        {categories && categories.map((category, index) => (
+                            <li>
+                                <Link href={"/categories/" + category.key} className="block px-4 py-2 hover:bg-neutral-100">
+                                    {category.name}
+                                </Link>
+                            </li>
+                        ))}
                     </ul>
                 </div>
                 <Link href="#" className="my-auto mx-4 hover:underline">Blog</Link>

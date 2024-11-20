@@ -3,16 +3,17 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 
-type Category = {
+type Categories = {
+    id: string;
     name: string;
-    url: string;
+    key: string;
 };
 
 type Post = {
     id: number;
     title: string;
     date: string;
-    categories: Category[];
+    categories: Categories[];
     image: string;
     content: string;
     description: string;
@@ -26,7 +27,7 @@ export default function PostPage() {
         if (!id) return;
 
         async function fetchPost() {
-            const response = await fetch(`/api/posts?id=${id}`);
+            const response = await fetch(`/api/posts/${id}`);
             if (response.ok) {
                 const data: Post = await response.json();
                 setPost(data);
@@ -49,8 +50,9 @@ export default function PostPage() {
                 <p className="text-sm mb-4">
                     <span className='me-4 text-gray-400'>{post.date}</span>
                     {post.categories.map((category, index) => (
-                        <span key={index}>
-                            <a href={category.url} className="hover:underline text-gray-800 mr-1">{category.name}</a>
+                        <span key={category.id}>
+                            <a href={"/categories/" + category.key} className="hover:underline text-gray-800">{category.name}</a>
+                            {index < post.categories.length - 1 && ', '}
                         </span>
                     ))}
                 </p>
