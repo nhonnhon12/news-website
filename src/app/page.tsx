@@ -5,9 +5,9 @@ import PreviewPost from '@/app/components/PreviewPost';
 import Banner from './components/Banner';
 
 const bannerData = {
-  'title': 'Enhancing Your Designs with Negative Space',
-  'url': '/',
-  'background': '/banners/1.jpg',
+  'title': 'Photography Skills Can Improve Your Graphic Design.',
+  'post': '8',
+  'background': '/posts/8.jpg',
   'author': 'Naruto Uzumaki',
   'date': 'September 06, 2016'
 };
@@ -43,7 +43,7 @@ export default function Home() {
     <div className="grid grid-cols-12 gap-8">
       <Banner
         title={bannerData.title}
-        url={bannerData.url}
+        post={bannerData.post}
         background={bannerData.background}
         author={bannerData.author}
         date={bannerData.date} />
