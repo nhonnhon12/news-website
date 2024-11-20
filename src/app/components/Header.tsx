@@ -37,8 +37,8 @@ export default function Header() {
                         Categories
                     </Link>
                     <ul className="absolute left-0 top-2/3 hidden mt-2 space-y-2 text-gray-600 bg-white shadow-lg w-auto group-hover:block font-normal text-sm z-50">
-                        {categories && categories.map((category, index) => (
-                            <li>
+                        {categories && categories.map((category) => (
+                            <li key={category.id}>
                                 <Link href={"/categories/" + category.key} className="block px-4 py-2 hover:bg-neutral-100">
                                     {category.name}
                                 </Link>

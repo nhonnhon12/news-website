@@ -40,7 +40,7 @@ export default function PostPage() {
     }, [id]);
 
     if (!post) {
-        return <div className='text-center'>Loading...</div>;
+        return <div className='font-sans text-center text-4xl font-bold mt-8'>Loading...</div>;
     }
 
     return (

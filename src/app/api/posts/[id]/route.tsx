@@ -20,9 +20,5 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
             key: cat?.key,
         })),
     };
-
-    if (!postWithCategories) {
-        return NextResponse.json({ error: 'Post not found' }, { status: 404 });
-    }
     return NextResponse.json(postWithCategories);
 }
