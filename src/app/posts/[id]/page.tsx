@@ -45,7 +45,7 @@ export default function PostPage() {
 
     return (
         <div className="container mx-auto p-6 font-sans">
-            <img src={post.image} alt={post.title} className="w-full max-h-[400px] object-cover" />
+            <img src={post.image} alt={post.title} className="w-full h-auto max-h-[500px] object-cover" />
             <div className='px-8 py-16'><h1 className="text-3xl font-bold mb-4 text-gray-800">{post.title}</h1>
                 <p className="text-sm mb-4">
                     <span className='me-4 text-gray-400'>{post.date}</span>
